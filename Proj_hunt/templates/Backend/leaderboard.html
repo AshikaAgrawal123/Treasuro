@@ -1,0 +1,376 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+	<title>Treasuro | Leaderboards</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="description" content="HostSpace template project">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="../../static/styles/bootstrap-4.1.2/bootstrap.min.css">
+	<link href="../../static/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" type="text/css" href="../../static/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+	<link rel="stylesheet" type="text/css" href="../../static/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+	<link rel="stylesheet" type="text/css" href="../../static/plugins/OwlCarousel2-2.2.1/animate.css">
+	<link rel="stylesheet" type="text/css" href="../../static/styles/main_styles.css">
+	<link rel="stylesheet" type="text/css" href="../../static/styles/responsive.css">
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/login.css' %}">
+<link href="../../static/images/icon.jpg" rel="shortcut icon" type="image/x-icon"/>
+	<link rel="stylesheet" type="text/css" href="../../static/styles/leaderboard.css">
+	<style type="text/css">
+		.leaderboard ol li::before{
+    width: auto;
+    height: auto;
+    padding: 3px;
+}
+	</style>
+	<style type="text/css">
+		.icon {
+		    position: absolute;
+		    width: 9%;
+		    bottom: 0;
+		    left:0;
+		    padding: 2%;
+		    opacity: 0.8;
+		    z-index: 1000;
+		}
+		@media only screen and (min-device-width : 320px) and (max-device-width : 480px){
+			.icon {
+		    position: absolute;
+		    width: 18%;
+		    bottom: 0;
+		    left:0;
+		    padding: 2%;
+		    opacity: 0.8;
+		    z-index: 1000;
+		}
+		}
+	</style>
+<style type="text/css">
+		body {
+  font-family: Arial, sans-serif;
+  background: #ddd;
+}
+
+h1 {
+  text-align: center;
+  font-family: "Trebuchet MS", Tahoma, Arial, sans-serif;
+  color: #333;
+  text-shadow: 0 1px 0 #fff;
+  margin: 50px 0;
+}
+
+#wrapper {
+  width: 100px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 20px;
+  border: 10px solid #aaa;
+  border-radius: 15px;
+  background-clip: padding-box;
+  text-align: center;
+}
+
+.button {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  padding: 5px 10px;
+  border: 1px solid #aaa;
+  background-color: #eee;
+  background-image: linear-gradient(top, #fff, #f0f0f0);
+  border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  color: #666;
+  text-decoration: none;
+  text-shadow: 0 1px 0 #fff;
+  cursor: pointer;
+  transition: all 0.2s ease-out;
+}
+.button:hover {
+  border-color: #999;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+}
+.button:active {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25) inset;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+  transition: opacity 200ms;
+  visibility: hidden;
+  opacity: 0;
+}
+.overlay.light {
+  background: rgba(255, 255, 255, 0.5);
+}
+.overlay .cancel {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  cursor: default;
+}
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+.popup {
+  margin: 75px auto;
+  padding: 20px;
+  background: #fff;
+  border: 1px solid #666;
+  width: 300px;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+  position: relative;
+}
+.light .popup {
+  border-color: #aaa;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+}
+.popup h2 {
+  margin-top: 0;
+  color: #666;
+  font-family: "Trebuchet MS", Tahoma, Arial, sans-serif;
+}
+.popup .close {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 20px;
+  right: 20px;
+  opacity: 0.8;
+  transition: all 200ms;
+  font-size: 24px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #666;
+}
+.popup .close:hover {
+  opacity: 1;
+}
+.popup .content {
+  max-height: 400px;
+  overflow: auto;
+}
+.popup p {
+  margin: 0 0 1em;
+}
+.popup p:last-child {
+  margin: 0;
+}
+
+#popup1 {
+  display: block;
+  z-index: 100000;
+}
+#main{
+	display: none;
+}
+
+	</style>
+</head>
+
+<body>
+
+	<div class="super_container">
+
+		<!-- Header -->
+
+		<header class="header trans_400">
+			<nav role="navigation" class="navBar">
+				<div class="brand-logo">
+					<span>Treasuro</span>
+				</div>
+				<input type="checkbox">
+				<div class="hamburger-menu">
+					<span></span>
+				</div>
+				<ul class="nav-list">
+					<li class="nav-item"><a href="/question">Dashboard</a></li>
+					{% if request.user.is_authenticated %}
+					<li class="nav-item"><a href="/logout">Logout</a></li>
+					{% else %}
+					<li class="nav-item"><a href="/register">Register</a></li>
+					{% endif %}
+					<!-- <li class="nav-item"><a href="Sign Up.html" target="_blank">Sign Up</a></li> -->
+					<li class="nav-item"><a href="/rules">Rules</a></li>
+				</ul>
+			</nav>
+		</header>
+
+		<!-- Menu -->
+
+		<!-- <div class="menu_overlay trans_400"></div> -->
+
+		<!-- Home -->
+
+		<div class="home">
+			<div class="home_background"></div>
+			<div class="background_image background_city" style="background-image:url(../../static/images/city.png)"></div>
+			<div class="cloud cloud_1"><img src="../../static/images/cloud.png" alt=""></div>
+			<div class="cloud cloud_2"><img src="../../static/images/cloud.png" alt=""></div>
+			<div class="cloud cloud_3"><img src="../../static/images/cloud_full.png" alt=""></div>
+			<div class="cloud cloud_4"><img src="../../static/images/cloud.png" alt=""></div>
+			<div class="container_box">
+				<div class="login-box login_main board leaderboard">
+					<div class="login-title">
+						<h4>Leaderboard</h4>
+						{% if hg %}
+						<h6 style="color: white;">Your Rank - {{rank}}</h6>
+						{% endif %}
+					</div>
+					<ol>
+						{% for obj in object %}
+							<li>
+								<mark>{{ obj.name|truncatewords:1 }}</mark>
+								<small>{{ obj.points }}</small>
+							</li>
+						{% endfor %}
+							<!-- <li>
+								<mark>Brandon Barnes</mark>
+								<small>301</small>
+							</li>
+							<li>
+								<mark>Raymond Knight</mark>
+								<small>292</small>
+							</li>
+							<li>
+								<mark>Trevor McCormick</mark>
+								<small>245</small>
+							</li>
+							<li>
+								<mark>Andrew Fox</mark>
+								<small>203</small>
+							</li>
+							<li>
+									<mark>Jerry Wood</mark>
+									<small>315</small>
+								</li>
+								<li>
+									<mark>Brandon Barnes</mark>
+									<small>301</small>
+								</li>
+								<li>
+									<mark>Raymond Knight</mark>
+									<small>292</small>
+								</li>
+								<li>
+									<mark>Trevor McCormick</mark>
+									<small>245</small>
+								</li>
+								<li>
+									<mark>Andrew Fox</mark>
+									<small>203</small>
+								</li>
+								<li>
+										<mark>Jerry Wood</mark>
+										<small>315</small>
+									</li>
+									<li>
+										<mark>Brandon Barnes</mark>
+										<small>301</small>
+									</li>
+									<li>
+										<mark>Raymond Knight</mark>
+										<small>292</small>
+									</li>
+									<li>
+										<mark>Trevor McCormick</mark>
+										<small>245</small>
+									</li>
+									<li>
+										<mark>Andrew Fox</mark>
+										<small>203</small>
+									</li> -->
+						</ol>
+				</div>
+				<!-- <iframe src="../../static/silent.mp3" allow="autoplay; loop" id="audio" style="display:none"></iframe>
+	<a onclick="togglePlay()" href="#" title="Audio" >
+    	<img class ="img icon" src="https://cdn4.iconfinder.com/data/icons/proglyphs-multimedia/512/Speaker-512.png">
+	</a>
+	<audio autoplay loop id="my_audio" src="../../static/website.mp3"> -->
+			</div>
+		</div>
+	</div>
+
+<div id="main">
+	<h1>Popup/Modal Windows without JavaScript</h1>
+<div id="wrapper">
+  <p><a id="link" class="button" href="#popup1">Click Me</a></p>
+	<p><a class="button" href="#popup2">Click Me Too</a></p>
+</div>
+</div>
+
+<div id="popup1" class="overlay">
+	<div class="popup">
+		<h2>! Important !</h2>
+		<a class="close" href="#">&times;</a>
+		<div class="content">
+			<p style="color: black;">Last few moments. Play it out !!💁💁💁</p>
+		</div>
+	</div>
+</div>
+
+
+<script type="text/javascript">
+	window.onload = function(){
+		var link = document.getElementById("link").href;
+		var newtab= window.open(link,'_active');
+	}
+</script>
+
+
+<style type="text/css">
+@media only screen and (min-width: 992px){
+	.nav-item a:hover{
+		    background-color: #1befc5;
+		    border-radius: .4rem;
+		    color: black;
+		}
+}
+</style>
+<script type="text/javascript">
+		  var myAudio = document.getElementById("my_audio");
+		  console.log(myAudio);
+	      var isPlaying = true;
+	      
+	      function togglePlay() {
+	        
+	        if (isPlaying) {
+	          myAudio.pause();
+	        } else {
+	          myAudio.play();
+	          
+	        }
+	        
+	      };
+	      myAudio.onplaying = function() {
+	        isPlaying = true;
+	      };
+	      myAudio.onpause = function() {
+	        isPlaying = false;
+	      };
+	</script>
+	<script src="../../static/js/jquery-3.2.1.min.js"></script>
+	<script src="../../static/styles/bootstrap-4.1.2/popper.js"></script>
+	<script src="../../static/styles/bootstrap-4.1.2/bootstrap.min.js"></script>
+	<script src="../../static/plugins/greensock/TweenMax.min.js"></script>
+	<script src="../../static/plugins/greensock/TimelineMax.min.js"></script>
+	<script src="../../static/plugins/scrollmagic/ScrollMagic.min.js"></script>
+	<script src="../../static/plugins/greensock/animation.gsap.min.js"></script>
+	<script src="../../static/plugins/greensock/ScrollToPlugin.min.js"></script>
+	<script src="../../static/plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+	<script src="../../static/plugins/easing/easing.js"></script>
+	<script src="../../static/plugins/progressbar/progressbar.min.js"></script>
+	<script src="../../static/plugins/parallax-js-master/parallax.min.js"></script>
+	<script src="../../static/js/custom.js"></script>
+</body>
+
+</html>

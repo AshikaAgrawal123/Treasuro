@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		.icon {
+		    position: absolute;
+		    width: 6%;
+		    bottom: 0;
+		    right: 0;
+		    padding: 2%;
+		    opacity: 0.8;
+		}
+	</style>
+</head>
+<body>
+	<iframe src="silent.mp3" allow="autoplay; loop" id="audio" style="display:none"></iframe>
+	
+	 <!-- <audio autoplay loop id="my_audio">
+		<source src="https://web.archive.org/web/20161105000901im_/http://zealicon.in/zeal/website.mp3">
+	</audio> -->
+	<a onclick="togglePlay()" href="#" title="Audio" >
+    	<img class ="img icon" src="https://cdn4.iconfinder.com/data/icons/proglyphs-multimedia/512/Speaker-512.png">
+	</a>
+
+	<audio autoplay loop id="my_audio" src="website.mp3">
+		<!-- <source src="website.mp3">
+	</audio> -->
+	<script type="text/javascript">
+		  var myAudio = document.getElementById("my_audio");
+		  console.log(myAudio);
+	      var isPlaying = true;
+	      // window.onload = function(){
+	      //   myAudio.play();
+	      //   console.log("scd");
+	      // }
+
+	      function togglePlay() {
+	        
+	        if (isPlaying) {
+	          myAudio.pause();
+	        } else {
+	          myAudio.play();
+	          
+	        }
+	        
+	      };
+	      myAudio.onplaying = function() {
+	        isPlaying = true;
+	      };
+	      myAudio.onpause = function() {
+	        isPlaying = false;
+	      };
+	</script>
+</body>
+</html>

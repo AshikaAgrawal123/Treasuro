@@ -1,0 +1,36 @@
+.home .container_box .login_main{
+    top: -10vh;
+    margin: 0 auto;
+    width: 70vw;
+    justify-content: center;
+    align-items: center;
+}
+.login-title h2{
+    color: white;
+    margin: 3vh 0;
+}
+.rules_list ul {
+    /* font-family: monospace; */
+    font-size: 1em;
+    list-style: none;
+    margin: 0em;
+    padding: 0;
+  }
+  .rules_list ul li {
+    margin: 0.5em 1em;
+    /* margin-bottom: 1em; */
+    padding-left: 1.5em;
+    position: relative;
+  }
+  .rules_list ul li:after {
+    content: '';
+    height: .4em;
+    width: .4em;
+    background: #D2153A;
+    display: block;
+    position: absolute;
+    transform: rotate(45deg);
+    top: .50em;
+    left: 0;
+  }
+  

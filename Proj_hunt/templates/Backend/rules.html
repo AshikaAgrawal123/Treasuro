@@ -1,0 +1,295 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Rules</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="HostSpace template project">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="../../static/styles/bootstrap-4.1.2/bootstrap.min.css">
+    <link href="../../static/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="../../static/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="../../static/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+    <link rel="stylesheet" type="text/css" href="../../static/plugins/OwlCarousel2-2.2.1/animate.css">
+    <link rel="stylesheet" type="text/css" href="../../static/styles/main_styles.css">
+    <link rel="stylesheet" type="text/css" href="../../static/styles/responsive.css">
+    <link rel="stylesheet" type="text/css" href="../../static/styles/login.css">
+<link href="../../static/images/icon.jpg" rel="shortcut icon" type="image/x-icon"/>
+    <link rel="stylesheet" type="text/css" href="../../static/styles/rules.css">
+    <style>
+        
+        @media screen and (min-width: 840px) {
+            .home{
+                height: 180vh;
+            }
+            .container_box{
+                flex-direction: column-reverse;
+            }
+        }
+        @media screen and (min-width: 1024px) {
+            .home{
+                height: 155vh;
+            }
+        }
+        @media screen and (min-width: 1900px) {
+            .home{
+                height: 100vh;
+            }
+        }
+
+        @media screen and (max-width: 840px) {
+            .home{
+                height: 180vh;
+            }
+            .home .container_box .login_main{
+                width: 90vw;
+            }
+        }
+
+        @media screen and (max-width: 680px) {
+            .home{
+                height: 200vh;
+            }
+        }
+
+        @media screen and (max-width: 500px) {
+            .home{
+                height: 220vh;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .home{
+                height: 250vh;
+            }
+        }
+
+        @media screen and (max-width: 420px) {
+            .home{
+                height: 300vh;
+            }
+        }
+
+        @media screen and (max-width: 350px) {
+            .home{
+                height: 340vh;
+            }
+        }
+
+        @media screen and (max-width: 320px) {
+            .home{
+                height: 360vh;
+            }
+        }
+
+        .new_user .domain_search_button{
+            /* margin: 2vh 0; */
+            width: 10vw;
+            text-align: center;
+        }
+
+        .container_box{
+            align-items: center;
+        }
+
+        .domain_search_button{
+            position: absolute;
+        }
+    </style>
+  <!--   <style type="text/css">
+        .icon {
+            position: absolute;
+            width: 9%;
+            bottom: 0;
+            left:0;
+            padding: 2%;
+            opacity: 0.8;
+            z-index: 1000;
+        }
+        @media only screen and (min-device-width : 320px) and (max-device-width : 480px){
+            .icon {
+            position: absolute;
+            width: 18%;
+            bottom: 0;
+            left:0;
+            padding: 2%;
+            opacity: 0.8;
+            z-index: 1000;
+        }
+        }
+    </style> -->
+<style>
+@media screen and (max-width: 680px) {
+            .home{
+                height: 210vh;
+            }
+        }
+
+        @media screen and (max-width: 500px) {
+            .home{
+                height: 230vh;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .home{
+                height: 270vh;
+            }
+        }
+
+        @media screen and (max-width: 420px) {
+            .home{
+                height: 320vh;
+            }
+        }
+
+        @media screen and (max-width: 350px) {
+            .home{
+                height: 350vh;
+            }
+        }
+
+        @media screen and (max-width: 320px) {
+            .home{
+                height: 380vh;
+            }
+        }
+
+        @media screen and (max-width: 680px) and (max-height: 460px) {
+            .home{
+                height: 320vh;
+            }
+        }
+</style>
+</head>
+
+<body>
+
+    <div class="super_container">
+
+        <!-- Header -->
+
+        <header class="header trans_400">
+                <nav role="navigation" class="navBar">
+                    <div class="brand-logo">
+                        <span>Treasuro</span>
+                    </div>
+                    <input type="checkbox">
+                    <div class="hamburger-menu">
+                        <span></span>
+                    </div>
+
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="/question">DashBoard</a></li>
+                        {% if request.user.is_authenticated %}
+                        <li class="nav-item"><a href="/logout">Logout</a></li>
+                        {% else %}
+                        <li class="nav-item"><a href="/">Login</a></li>
+                        {% endif %}
+                        <!-- <li class="nav-item"><a href="Sign Up.html" target="_blank">Sign Up</a></li> -->
+                        <li class="nav-item"><a href="/rules">Rules</a></li>
+                    </ul>
+                </nav>
+            </header>
+
+        <!-- Menu -->
+
+        <!-- <div class="menu_overlay trans_400"></div> -->
+
+        <!-- Home -->
+
+        <div class="home">
+            <div class="home_background"></div>
+            <div class="background_image background_city" style="background-image:url(../../static/images/city.png)"></div>
+            <div class="cloud cloud_1"><img src="../../static/images/cloud.png" alt=""></div>
+            <div class="cloud cloud_2"><img src="../../static/images/cloud.png" alt=""></div>
+            <div class="cloud cloud_3"><img src="../../static/images/cloud_full.png" alt=""></div>
+            <div class="cloud cloud_4"><img src="../static/images/cloud.png" alt=""></div>
+            <div class="background"></div>
+            <div class="container_box">
+                <div class="login-box login_main">
+                    <div class="login-title">
+                        <h2>Rules</h2>
+                    </div>
+                    <div class="rules_list">
+                        <ul>
+                            
+
+
+                            <li><b>Game Play:</b> At each level, you will be provided with a clue which will be pointing towards a location. Once you crack the clue, you will find a QR code at the location which will lead you to the next level if the answer is correct.</li>
+                            <li><b>Duration:</b> The online quest which will be live for two days. </li>
+                            <li><b>Submissions:</b> Every level holds 10 points. After each wrong submission, the total points will get deducted by 2. Once the score reaches 4, it will remain constant. For eg., 10->8->6->4->constant The maximum number of attempts for each level is 5
+All the submissions of a level will be recorded in our DB so avoid guess work and play fair.</li>
+                            <li><b>Solutions:</b> Questions are of two types, online or offline. Offline questions will be pointing towards only one location in the college.</li>
+                            <li><b>Bonus codes:</b> Within the college, 4 special QR codes will be set up with the tag 'Scan at your own risk." These can prove to be lucky or unlucky for you so beware.</li>
+                            <li><b>Appeals:</b> There are no appeals in this game but if you think there is an error,feel free to contact us.</li>
+                            <li><b>Judgements:</b>
+-Use only your first name as user name, usage of any fancy or foul name will lead to disqualification.
+-The society holds the right to disqualify any individual in case of any unethical means.
+*All the decisions made by the society are final.</li>
+                        </ul>
+                    </div>
+                </div>
+                {% if login %}
+                <button class="domain_search_button" onclick="location.href='/question'">Begin Hunt!!!</button>
+                {% else %}
+                <button class="domain_search_button" onclick="location.href='/'">Home</button>
+                {% endif %}
+               <!--  <iframe src="../../static/silent.mp3" allow="autoplay; loop" id="audio" style="display:none"></iframe>
+    <a onclick="togglePlay()" href="#" title="Audio" >
+        <img class ="img icon" src="https://cdn4.iconfinder.com/data/icons/proglyphs-multimedia/512/Speaker-512.png">
+    </a>
+    <audio autoplay loop id="my_audio" src="../../static/website.mp3"> -->
+            </div>
+
+        </div>
+    </div>
+<style type="text/css">
+@media only screen and (min-width: 992px){
+    .nav-item a:hover{
+            background-color: #1befc5;
+            border-radius: .4rem;
+            color: black;
+        }
+}
+</style>
+<!-- <script type="text/javascript">
+          var myAudio = document.getElementById("my_audio");
+          console.log(myAudio);
+          var isPlaying = true;
+          
+          function togglePlay() {
+            
+            if (isPlaying) {
+              myAudio.pause();
+            } else {
+              myAudio.play();
+              
+            }
+            
+          };
+          myAudio.onplaying = function() {
+            isPlaying = true;
+          };
+          myAudio.onpause = function() {
+            isPlaying = false;
+          };
+    </script> -->
+    <script src="../../static/js/jquery-3.2.1.min.js"></script>
+    <script src="../../static/styles/bootstrap-4.1.2/popper.js"></script>
+    <script src="../../static/styles/bootstrap-4.1.2/bootstrap.min.js"></script>
+    <script src="../../static/plugins/greensock/TweenMax.min.js"></script>
+    <script src="../../static/plugins/greensock/TimelineMax.min.js"></script>
+    <script src="../../static/plugins/scrollmagic/ScrollMagic.min.js"></script>
+    <script src="../../static/plugins/greensock/animation.gsap.min.js"></script>
+    <script src="../../static/plugins/greensock/ScrollToPlugin.min.js"></script>
+    <script src="../../static/plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+    <script src="../../static/plugins/easing/easing.js"></script>
+    <script src="../../static/plugins/progressbar/progressbar.min.js"></script>
+    <script src="../../static/plugins/parallax-js-master/parallax.min.js"></script>
+    <script src="../../static/js/custom.js"></script>
+</body>
+
+</html>
